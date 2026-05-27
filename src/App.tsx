@@ -1,4 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 import Header from "./components/Header";
 
@@ -14,14 +18,16 @@ function App() {
   return (
     <ThemeProvider>
       <IngredientProvider>
-        <Header />
+        <BrowserRouter basename="/fridgewise">
+          <Header />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="/recipes" element={<Recipes />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/inventory" element={<Inventory />} />
+            <Route path="/recipes" element={<Recipes />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </BrowserRouter>
       </IngredientProvider>
     </ThemeProvider>
   );
