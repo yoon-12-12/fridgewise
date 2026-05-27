@@ -3,9 +3,9 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  base: "/fridgewise/",
   plugins: [
     react(),
     tailwindcss(),
   ],
-  base: "/fridgewise/",
 });
