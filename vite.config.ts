@@ -8,4 +8,10 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  build: {
+    // Vite 8의 Rolldown 빌더 설정 옵션 추가
+    rolldownOptions: {
+      external: ["react-is"],
+    },
+  },
 });
