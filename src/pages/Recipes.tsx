@@ -40,9 +40,9 @@ export default function Recipes() {
       * **필요한 주재료**:
       * **상세 조리 순서(Step-by-Step)**:`;
 
-      // 💡 최신 SDK 호출
+      // 💡 트래픽이 안정적인 1.5 버전으로 우회
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash", 
+        model: "gemini-1.5-flash", 
         contents: prompt,
       });
       
