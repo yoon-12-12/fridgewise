@@ -40,18 +40,18 @@ export default function Recipes() {
       * **필요한 주재료**:
       * **상세 조리 순서(Step-by-Step)**:`;
 
-      // 💡 트래픽이 안정적인 1.5 버전으로 우회
+      // 💡 @google/genai 신형 SDK 스펙에 맞는 정확한 모델명 지정
       const response = await ai.models.generateContent({
-        model: "gemini-1.5-flash", 
+        model: "gemini-2.5-flash", 
         contents: prompt,
       });
       
-      // 🎯 최신 SDK 스펙에 맞춰 일반 문자열 프로퍼티로 바로 가져옵니다 (TypeScript 에러 해결)
+      // 프로퍼티 접근 후 상태 반영
       const textResponse = response.text;
       setAiRecipe(textResponse || "레시피를 생성하지 못했습니다.");
     } catch (error) {
       console.error("AI 레시피 생성 실패:", error);
-      setAiRecipe("### ❌ AI 통신 실패\n구글 인공지능 엔진과 연결하는 과정에서 에러가 발생했습니다. 패키지 설치 상태나 API 키를 다시 확인해 주세요.");
+      setAiRecipe("### ❌ AI 통신 실패\n구글 인공지능 엔진과 연결하는 과정에서 에러가 발생했습니다. 잠시 후 다시 시도해 주시거나 API 키 설정을 확인해 주세요.");
     } finally {
       setIsLoading(false);
     }
