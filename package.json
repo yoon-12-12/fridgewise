@@ -23,6 +23,7 @@
     "react-router-dom": "^7.15.1",
     "recharts": "^3.8.1",
     "tesseract.js": "^7.0.0",
+    "three": "^0.164.1",
     "uuid": "^14.0.0",
     "xlsx": "^0.18.5"
   },
@@ -33,6 +34,7 @@
     "@types/node": "^24.12.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.164.0",
     "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react": "^5.2.0",
     "autoprefixer": "^10.5.0",

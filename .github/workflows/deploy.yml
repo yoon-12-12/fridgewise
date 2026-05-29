@@ -26,11 +26,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        # 기존 npm ci 대신, 의존성 충돌을 유연하게 넘어가는 --legacy-peer-deps 추가
+        # 의존성 충돌을 유연하게 넘어가고 three를 확실하게 설치합니다.
         run: npm install --legacy-peer-deps
 
       - name: Build
-        # 빌드 시 상세한 에러 로그를 강제로 출력하도록 설정
         run: npm run build -- --debug
         env:
           NODE_ENV: production
