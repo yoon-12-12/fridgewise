@@ -23,8 +23,8 @@ export default function Recipes() {
 
     if (!API_KEY || API_KEY === "YOUR_GEMINI_API_KEY") {
       setAiRecipe(`### 🔑 API Key 세팅이 필요합니다.\n
-1. 프로젝트 최상위 폴더에 \`.env.local\` 파일을 생성하세요.
-2. 파일 내부에 \`VITE_GEMINI_API_KEY=발급받은키\` 를 입력하고 저장하세요.`);
+1. **로컬 환경**: 프로젝트 최상위 폴더에 \`.env.local\` 파일을 생성하고 \`VITE_GEMINI_API_KEY=발급받은키\`를 입력하세요.
+2. **배포 환경**: GitHub Repository Settings -> Secrets에 \`VITE_GEMINI_API_KEY\`를 등록해 주세요.`);
       return;
     }
 
@@ -34,19 +34,19 @@ export default function Recipes() {
       const ai = new GoogleGenAI({ apiKey: API_KEY });
 
       const prompt = `너는 세계 최고의 미슐랭 3스타 셰프야. 현재 내 냉장고에는 [${myIngredientNames.join(", ")}] 요리 재료들이 있어. 이 재료들을 최대한 활용(추가적인 양념이나 기본 재료는 소량 가미 가능)해서 만들 수 있는 환상적인 식사 레시피 1개를 추천해줘.
-      반드시 아래 형식을 지켜서 한국어로 마크다운(Markdown) 예쁘게 적용해서 대답해줘:
+      반드시 아래 형식을 지켜서 한국어로 마크다운(Markdown) 예쁘게 적용해서 대답해줘. 다른 불필요한 서론이나 맺음말은 제외해줘:
       ### 🍽️ 추천 요리 이름: [이름]
       * **소요 시간 및 난이도**: 
       * **필요한 주재료**:
       * **상세 조리 순서(Step-by-Step)**:`;
 
-      // 💡 [수정] 최신 SDK 엔진이 올바르게 인식하도록 가장 안정적인 "gemini-2.5-flash"로 변경
-      // 만약 1.5 버전을 꼭 써야 한다면 "gemini-1.5-flash" 그대로 들어가되, 최신 패키지 구조가 정상 인지하도록 매핑합니다.
+      // 💡 최신 SDK 호출
       const response = await ai.models.generateContent({
         model: "gemini-2.5-flash", 
         contents: prompt,
       });
       
+      // 🎯 최신 SDK 스펙에 맞춰 일반 문자열 프로퍼티로 바로 가져옵니다 (TypeScript 에러 해결)
       const textResponse = response.text;
       setAiRecipe(textResponse || "레시피를 생성하지 못했습니다.");
     } catch (error) {
@@ -86,7 +86,7 @@ export default function Recipes() {
           <div className="absolute top-4 right-4 bg-indigo-600 text-white text-xs font-black uppercase px-3 py-1 rounded-full tracking-widest shadow-md">
             Gemini Engine
           </div>
-          <div className="prose prose-stone dark:prose-invert max-w-none text-gray-700 dark:text-gray-200 whitespace-pre-line leading-relaxed">
+          <div className="prose prose-stone dark:prose-invert max-w-none text-gray-700 dark:text-gray-200 whitespace-pre-line leading-relaxed font-medium">
             {aiRecipe}
           </div>
         </div>
