@@ -1,4 +1,5 @@
 // 파일명: src/pages/Recipes.tsx
+// 최신 빌드 강제 적용
 import { useState } from "react";
 import { useIngredient } from "../context/IngredientContext";
 import ShoppingList from "../components/ShoppingList";
