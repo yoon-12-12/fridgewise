@@ -26,13 +26,14 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        # 의존성 충돌을 유연하게 넘어가고 three를 확실하게 설치합니다.
         run: npm install --legacy-peer-deps
 
       - name: Build
         run: npm run build -- --debug
         env:
           NODE_ENV: production
+          # 💡 Gemini API 키를 빌드 환경에 안전하게 주입합니다.
+          VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
